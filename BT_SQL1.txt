@@ -1,0 +1,50 @@
+1.
+-- Lấy first_name và last_name của toàn bộ actor và sắp xếp last_name theo alphabe
+- SELECT first_name, last_name FROM `actor`  ORDER BY last_name ASC
+
+-- Lấy thông tin actor có last_name bắt đầu bằng chữ D
+- SELECT * FROM `actor` WHERE last_name LIKE 'D%'
+2.
+-- Lấy toàn bộ thông tin có rental_rate = 0.99 và có rating là PG
+- SELECT * FROM `film` WHERE rental_rate = 0.99 AND rating = 'PG'
+
+-- Lấy tiêu đề, mô tả, độ dài, và giá thuê của phim có length từ 60 đến 90 và có rental_rate là 0.99 hoặc 2.99
+- SELECT title,description,length,rental_rate FROM `film` WHERE (length BETWEEN 60 AND 90) AND (rental_rate IN (0.99,2.99))
+
+-- Lấy tiêu đề và mô tả của phim có rental_duration nhỏ hơn 6, rating là PG hoặc PG 13 và sắp xếp phi
+- SELECT title, description FROM `film` WHERE (rental_duration < 6) AND (rating = 'PG' OR rating = 'PG-13') ORDER BY title DESC
+
+3.
+--
+4.
+-- Tính số lượng thành phố theo từng quốc gia
+- SELECT country, COUNT(city_id)
+FROM `city`,`country`
+WHERE city.country_id = country.country_id
+GROUP BY country.country_id
+
+-- Tính số lượng thành phố theo từng quốc gia có hơn 5
+- SELECT country, COUNT(city_id)
+FROM `city`,`country`
+WHERE city.country_id = country.country_id
+GROUP BY country.country_id
+HAVING COUNT(city_id) > 5
+
+-- Đếm các phim có rental duraion nhỏ nhất
+- SELECT COUNT(film_id)
+FROM `film`
+WHERE rental_duration = (SELECT MIN(rental_duration) FROM `film`)
+
+-- Lấy các phim có special_features có từ trailers
+- SELECT *
+FROM `film`
+WHERE special_features like '%trailers%'
+
+-- Đếm số lượng bản ghi trong bảng customer
+- SELECT COUNT(customer_id) FROM `customer`
+
+-- In first_name, last_name, email của custormer theo thứ tự ASC first_name
+- SELECT first_name, last_name, email FROM `customer` ORDER BY first_name ASC
+
+-- Tính tổng và trung bình thời lượng của các bộ phim theo từng mức rating 
+- SELECT rating, SUM(length), AVG(length) FROM `film` GROUP BY rating
