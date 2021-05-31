@@ -15,7 +15,16 @@
 - SELECT title, description FROM `film` WHERE (rental_duration < 6) AND (rating = 'PG' OR rating = 'PG-13') ORDER BY title DESC
 
 3.
---
+--Lấy tiêu đề, mô tả, độ dài, và giá thuê của phim có length từ 60 đến 90 và có rental_rate là 0.99 hoặc 2.99 và có thể loại là Drama, sắp xếp phim theo tên theo thứ tự ASC
+- SELECT title, description, length, rental_rate FROM `film`, `film_category`, `category`
+WHERE
+    film.film_id = film_category.film_id 
+    AND film_category.category_id = category.category_id
+    AND length BETWEEN 60 AND 90
+    AND rental_rate IN (0.99,2.99)
+    AND category.name = 'Drama'
+ORDER BY title ASC;
+
 4.
 -- Tính số lượng thành phố theo từng quốc gia
 - SELECT country, COUNT(city_id)
