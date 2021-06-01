@@ -1,0 +1,33 @@
+Viết các câu lệnh sql thực hiện các công việc sau:
+
+1 Tạo database quản lý thông tin sản phẩm
+
+2 Tạo bảng sản phẩm chứa các thông tin : mã sản phẩm, tên sản phẩm, mô tả, số lượng, giá bán
+
+3 Thêm thông tin cho 5 sản phẩm
+
+
+
+Trả lời:
+
+
+1. 
+
+CREATE DATABASE ProductManager
+
+2.
+
+CREATE TABLE Info(id_product INT PRIMARY KEY AUTO_INCREMENT,
+		name_product VARCHAR(50) NOT NULL,
+		description VARCHAR(100),
+		amount INT(5) NOT NULL,
+		price INT(10) )
+
+3.
+
+INSERT INTO Info(id_product,name_product,description,amount,price)
+VALUES (NULL,'Mi tom','30 goi/1 thung',100,100000),
+	(NULL,'Sua tuoi','5 goi/1 thung',100,120000),
+	(NULL,'Keo ngot','20 goi/1 thung',100,190000),
+	(NULL,'Mi chinh',NULL,100,200000),
+	(NULL,'Mi hao hao','30 goi/1 thung',100,500000)
