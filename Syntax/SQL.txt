@@ -1,0 +1,148 @@
+1.	Select
+-	Lấy tất cả các cột từ bảng Khách hàng: SELECT * FROM Customers;
+-	Chọn cột Thành phố từ bảng Khách hàng: SELECT City FROM Customers;
+-	Chọn tất cả các giá trị khác nhau từ cột Quốc gia trong bảng Khách hàng:
+SELECT DISTINCT Country FROM Customers;
+
+
+
+2.	WHERE
+-	Chọn tất cả các bản ghi mà cột Thành phố có giá trị "Berlin": 
+SELECT * FROM Customers
+WHERE City = ‘Berlin’;
+-	chọn tất cả các bản ghi mà Thành phố KHÔNG phải là "Berlin":
+SELECT * FROM Customers
+WHERE NOT City = ‘Berlin’;
+-	Chọn tất cả các bản ghi có cột CustomerID có giá trị 32:
+SELECT * FROM Customers
+WHERE CustomerID = 32;
+-	Chọn tất cả các bản ghi trong đó cột Thành phố có giá trị 'Berlin' và cột Mã bưu điện có giá trị 12209:
+SELECT * FROM Customers
+WHERE City = ‘Berlin’
+AND PostalCode = 12209;
+-	Chọn tất cả các bản ghi trong đó cột Thành phố có giá trị 'Berlin' hoặc 'London':
+SELECT * FROM Customers
+WHERE City = ‘Berlin’
+OR City = ‘London’;
+
+
+
+3.	ORDER BY
+-	Chọn tất cả các bản ghi từ bảng Khách hàng, sắp xếp kết quả theo thứ tự bảng chữ cái theo cột Thành phố:
+SELECT * FROM Customers
+ORDER BY City;
+-	Chọn tất cả các bản ghi từ bảng Khách hàng, sắp xếp kết quả đảo ngược theo thứ tự bảng chữ cái của cột Thành phố:
+SELECT * FROM Customers
+ORDER BY City DESC;
+-	Chọn tất cả các bản ghi từ bảng Khách hàng, sắp xếp kết quả theo thứ tự bảng chữ cái, đầu tiên theo cột Quốc gia, sau đó theo cột Thành phố:
+SELECT * FROM Customers
+ORDER BY Country, City
+
+
+
+4.	INSERT
+-	Chèn bản ghi mới trong bảng Khách hàng:
+INSERT INTO Customers (
+CustomerName,
+Address,
+City,
+Postalcode,
+Country)
+VALUES (
+'Hekkan Burger',
+'Gateveien 15',
+'Sandnes',
+'4306',
+'Norway');
+
+
+
+5.	NULL
+-     Chọn tất cả các bản ghi từ Khách hàng mà cột Mã bưu điện trống:
+        SELECT * FROM Customers
+        WHERE PostalCode IS NULL;
+-	Chọn tất cả các bản ghi từ Khách hàng mà cột Mã bưu điện KHÔNG trống:
+SELECT * FROM Customers
+        WHERE PostalCode IS NOT NULL;
+
+
+
+6.	UPDATE
+-	Cập nhật cột Thành phố của tất cả các bản ghi trong bảng Khách hàng:
+UPDATE Customers
+SET City = ‘Oslo’;
+-	Đặt giá trị của cột Thành phố thành 'Oslo', nhưng chỉ những cột mà cột Quốc gia có giá trị "Na Uy":
+UPDATE Customers
+SET City = ‘Oslo’
+WHERE Country = ‘Norway’
+-	Cập nhật giá trị Thành phố và giá trị Quốc gia:
+UPDATE Customers
+SET City = ‘Oslo’,
+Country = ‘Norway’
+WHERE CustomerID = 32;
+
+
+
+7.	DELETE
+-	Xóa tất cả các bản ghi khỏi bảng Khách hàng có giá trị Quốc gia là 'Na Uy’:
+DELETE FROM Customers
+WHERE Country = ‘Norway’;
+-	Xóa tất cả các bản ghi khỏi bảng Khách hàng: 
+DELETE FROM Customers;
+
+
+
+8.	FUNCTION
+-	Sử dụng hàm MIN để chọn bản ghi có giá trị nhỏ nhất của cột Giá:
+SELECT MIN(Price)
+FROM Products;
+-	Sử dụng hàm MAX để chọn bản ghi có giá trị lớn nhất của cột Giá:
+SELECT MAX(Price)
+FROM Products;
+-	Sử dụng chức năng đúng để trả về số lượng bản ghi có giá trị Giá được đặt thành 18:
+SELECT COUNT(*)
+FROM Products
+WHERE Price = 18;
+-	Sử dụng một hàm SQL để tính giá trung bình của tất cả các sản phẩm:
+SELECT AVG(Price)
+FROM Products;
+-	tính tổng của tất cả các giá trị cột Giá trong bảng Sản phẩm:
+SELECT SUM(Price)
+FROM Products;
+
+
+
+9.	LIKE
+-	Chọn tất cả các bản ghi có giá trị của cột Thành phố bắt đầu bằng chữ cái "a":
+SELECT * FROM Customers
+WHERE City LIKE 'a%';
+-	Chọn tất cả các bản ghi có giá trị của cột Thành phố kết thúc bằng chữ cái "a":
+SELECT * FROM Customers
+WHERE City LIKE '%a'
+-	Chọn tất cả các bản ghi có giá trị của cột Thành phố chứa ký tự "a":
+SELECT * FROM Customers
+WHERE City LIKE '%a%';
+-	Chọn tất cả các bản ghi có giá trị của cột Thành phố bắt đầu bằng chữ cái "a" và kết thúc bằng chữ cái "b"
+SELECT * FROM Customers
+WHERE City LIKE 'a%b'
+-	Chọn tất cả các bản ghi mà giá trị của cột Thành phố KHÔNG bắt đầu bằng chữ cái "a":
+SELECT * FROM Customers
+WHERE City NOT LIKE 'a%'
+
+
+
+10.	WILDCARDS
+-	Chọn tất cả các bản ghi có chữ cái thứ hai của Thành phố là "a" :
+SELECT * FROM Customers
+WHERE Coty LIKE '_a%';
+-	Chọn tất cả các bản ghi có chữ cái đầu tiên của Thành phố là "a" hoặc "c" hoặc "s" :
+SELECT * FROM Customers
+WHERE City LIKE ' [asc]';
+-	Chọn tất cả các bản ghi có chữ cái đầu tiên của Thành phố bắt đầu bằng bất kỳ thứ gì từ "a" đến "f" :
+SELECT * FROM Customers
+WHERE City LIKE ' [a-f] '
+-	Chọn tất cả các bản ghi mà chữ cái đầu tiên của Thành phố KHÔNG phải là "a" hoặc "c" hoặc "f" :
+SELECT * FROM Customers
+WHERE City LIKE ' [!a-f]'
+
+
