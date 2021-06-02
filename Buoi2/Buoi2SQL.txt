@@ -1,0 +1,24 @@
+Sử dụng database sakila
+
+1. Tính tổng và trung bình thời lượng của các bộ phim theo từng mức rating 
+
+2. Giá trị rental_rate lớn nhất và nhỏ nhất là bao nhiêu ?
+
+3. Tính số lượng thành phố theo từng mã quốc gia
+
+
+Trả lời: 
+
+
+1.
+SELECT SUM(length),AVG(length) FROM `film` 
+
+
+2.
+
+
+3.
+- SELECT country, COUNT(city_id)
+FROM `city`,`country`
+WHERE city.country_id = country.country_id
+GROUP BY country.country_id
