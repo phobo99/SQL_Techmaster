@@ -11,14 +11,31 @@ Trả lời:
 
 
 1.
-SELECT SUM(length),AVG(length) FROM `film` 
+SELECT 
+	rating,
+	SUM(length) AS Tong_do_dai,
+	AVG(length) AS Trung_binh_do_dai
+FROM 
+`film` 
+
+GROUP BY
+ rating;
 
 
 2.
-
+SELECT 
+	MIN(rental_rate) AS min_rental_rate,
+	MAX(rental_rate) AS max_rental_rate,
+FROM
+	`film`
 
 3.
-- SELECT country, COUNT(city_id)
-FROM `city`,`country`
-WHERE city.country_id = country.country_id
-GROUP BY country.country_id
+SELECT 
+	country,
+	COUNT(city_id)
+FROM 
+	`city`,`country`
+WHERE 
+	city.country_id = country.country_id
+GROUP BY 
+	country.country_id
